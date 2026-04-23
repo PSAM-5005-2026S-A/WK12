@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+  <head>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+      }
+
+      body {
+        width: 640px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+      }
+    </style>
+  </head>
+
+  <body id="body"></body>
+  <script>
+    async function loadFlowers() {
+      const res = await fetch("../data/flowers.json");
+      const fileNames = await res.json();
+      const bodyEl = document.getElementById("body");
+
+      for (const fname of fileNames) {
+        const imgEl = document.createElement("img");
+        imgEl.src = `https://raw.githubusercontent.com/PSAM-5005-2026S-A/5005-utils/refs/heads/main/datasets/image/flowers/${fname}`;
+        bodyEl.appendChild(imgEl);
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", loadFlowers);
+  </script>
+</html>

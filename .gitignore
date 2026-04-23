@@ -1,0 +1,10 @@
+.DS_S*
+__pycache__/
+*_utils.py
+*_utils.py.*
+*.py.*
+*.pyc
+*.pyc.*
+keys.py
+data/image
+www/data/*.json
