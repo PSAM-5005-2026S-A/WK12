@@ -7,4 +7,4 @@ __pycache__/
 *.pyc.*
 keys.py
 data/image
-www/data/*.json
+# www/data/*.json
