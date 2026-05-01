@@ -1,5 +1,5 @@
 async function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(windowWidth - 1, windowHeight - 1);
   const res = await fetch("https://raw.githubusercontent.com/PSAM-5005-2026S-A/5005-utils/refs/heads/main/datasets/json/wines.json");
   const data = await res.json();
 

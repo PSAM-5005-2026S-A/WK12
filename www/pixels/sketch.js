@@ -5,7 +5,7 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(windowWidth - 1, windowHeight - 1);
   mImg.loadPixels();
 
   const pixels = [];
@@ -23,13 +23,36 @@ function setup() {
 
 function drawPixels(pixels) {
   background(222);
-  noStroke();
+  strokeWeight(2);
+
+  image(mImg, 10, 10);
 
   // TODO: plot sorted colors
-  // TODO: plot colors with x := f(R), y := f(G)
+  const pixelsSorted = pixels.toSorted((a,b) => b[0] - a[0]);
 
-  for (let i = 0; i < pixels.length; i++) {
+  push();
+  translate(20 + mImg.width, 10);
+  for (let i = 0; i < pixelsSorted.length; i++) {
     const x = int(i % mImg.width);
     const y = int(i / mImg.width);
+    const mc = pixelsSorted[i];
+    stroke(mc[0], mc[1], mc[2]);
+    point(x,y);
   }
+  pop();
+
+  // TODO: plot colors with x := f(R), y := f(G)
+  push();
+  translate(10, 20 + mImg.height);
+  noStroke();
+  fill(255);
+  rect(0, 0, 2*mImg.width+10, 2*mImg.height+10);
+  for (let i = 0; i < pixelsSorted.length; i++) {
+    const mc = pixelsSorted[i];
+    const x = map(mc[0], 0, 255, 0, 2*mImg.width+10);
+    const y = map(mc[1], 0, 255, 0, 2*mImg.height+10);
+    stroke(mc[0], mc[1], mc[2]);
+    point(x,y);
+  }
+  pop();
 }
